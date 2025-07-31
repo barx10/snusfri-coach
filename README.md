@@ -1,48 +1,102 @@
-# Snusfri Coach
+# 🚭 Snusfri Coach
 
-En motiverende app som hjelper deg å holde deg snusfri med fokus på motorsykkelmål.
+En motiverende app som hjelper deg å holde deg snusfri med fokus på motorsykkelmål. Appen bruker AI for å generere personaliserte motivasjonsmeldinger basert på dine fremskritt.
 
-## Kjør Lokalt
+![Snusfri Coach Screenshot](assets/icon.svg)
 
-**Forutsetninger:** Node.js
+## ✨ Funksjoner
 
-1. Installer dependencies:
+- 📊 **Dashboard** med statistikk over snusfrie dager
+- 💰 **Penge-kalkulator** som viser hvor mye du har spart
+- 🏍️ **Motorsykkelmål** - visualiser drømmen din
+- 🤖 **AI-generert motivasjon** tilpasset dine fremskritt
+- 📱 **Responsiv design** som fungerer på alle enheter
+
+## 🚀 Kom i gang
+
+### Forutsetninger
+- Node.js (versjon 16 eller nyere)
+- En AI API-nøkkel (Google Gemini, OpenAI, etc.)
+
+### Installasjon
+
+1. **Klon repository:**
+   ```bash
+   git clone https://github.com/dittbrukernavn/snusfri-coach.git
+   cd snusfri-coach
+   ```
+
+2. **Installer dependencies:**
    ```bash
    npm install
    ```
 
-2. Sett opp API-nøkkel:
-   - Kopier `.env.example` til `.env`
-   - Legg til din API-nøkkel i `.env` filen
+3. **Sett opp miljøvariabler:**
    ```bash
    cp .env.example .env
    ```
+   Rediger `.env` og legg til din API-nøkkel:
+   ```
+   API_KEY=din_api_nøkkel_her
+   ```
 
-3. Sett opp AI service:
-   - Kopier `services/geminiService.template.ts` til `services/geminiService.ts`
-   - Implementer din foretrukne AI service (Google Gemini, OpenAI, etc.)
+4. **Sett opp AI service:**
    ```bash
    cp services/geminiService.template.ts services/geminiService.ts
    ```
+   Rediger `services/geminiService.ts` og implementer din foretrukne AI-tjeneste.
 
-4. Kjør appen:
+5. **Start utviklingsserver:**
    ```bash
    npm run dev
    ```
 
-## Funksjoner
+6. **Åpne i nettleser:**
+   Gå til `http://localhost:5173`
 
-- 📊 Dashboard med statistikk over snusfrie dager
-- 💰 Kalkulering av penger spart
-- 🏍️ Motivasjon fokusert på motorsykkelmål
-- 🤖 AI-generert daglig motivasjon
+## 🛠️ API Oppsett
 
-## API Oppsett
+Denne appen bruker AI for å generere personaliserte motivasjonsmeldinger. Du kan velge mellom:
 
-Denne appen bruker AI for å generere personlig motivasjon. Du trenger å:
+- **Google Gemini** (anbefalt)
+- **OpenAI GPT**
+- **Anthropic Claude**
+- **Andre AI-tjenester**
 
-1. Velge en AI-tjeneste (Google Gemini, OpenAI, Anthropic, etc.)
-2. Få en API-nøkkel
-3. Implementere servicen i `services/geminiService.ts`
+Se `services/geminiService.template.ts` for implementeringsguide.
 
-Template-filen viser hvordan servicen skal struktureres.
+## 🏗️ Bygg for produksjon
+
+```bash
+npm run build
+```
+
+De byggede filene vil være i `dist/` mappen.
+
+## 🤝 Bidra
+
+Bidrag er velkomne! Her er hvordan du kan hjelpe:
+
+1. Fork prosjektet
+2. Opprett en feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit endringene dine (`git commit -m 'Add some AmazingFeature'`)
+4. Push til branchen (`git push origin feature/AmazingFeature`)
+5. Åpne en Pull Request
+
+## 📝 Lisens
+
+Dette prosjektet er lisensiert under MIT License - se [LICENSE](LICENSE) filen for detaljer.
+
+## 🙏 Takk til
+
+- Alle som kjemper mot snusavhengighet
+- Motorsykkel-communityet for inspirasjon
+- Open source-bidragsyterne
+
+## 📞 Support
+
+Hvis du har spørsmål eller trenger hjelp, oprett en [issue](https://github.com/dittbrukernavn/snusfri-coach/issues).
+
+---
+
+**Lykke til med reisen mot et snusfritt liv! 🏍️💪**
