@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚭 Snusfri Coach
 
 En motiverende app som hjelper deg å holde deg snusfri med fokus på motorsykkelmål. Appen bruker AI for å generere personaliserte motivasjonsmeldinger basert på dine fremskritt.
