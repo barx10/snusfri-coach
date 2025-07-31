@@ -22,7 +22,7 @@ En motiverende app som hjelper deg å holde deg snusfri med fokus på motorsykke
 
 1. **Klon repository:**
    ```bash
-   git clone https://github.com/dittbrukernavn/snusfri-coach.git
+   git clone https://github.com/barx10/snusfri-coach.git
    cd snusfri-coach
    ```
 
@@ -95,7 +95,7 @@ Dette prosjektet er lisensiert under MIT License - se [LICENSE](LICENSE) filen f
 
 ## 📞 Support
 
-Hvis du har spørsmål eller trenger hjelp, oprett en [issue](https://github.com/dittbrukernavn/snusfri-coach/issues).
+Hvis du har spørsmål eller trenger hjelp, oprett en [issue](https://github.com/barx10/snusfri-coach/issues).
 
 ---
 

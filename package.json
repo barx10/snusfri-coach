@@ -7,12 +7,12 @@
   "keywords": ["snus", "quit-smoking", "motivation", "react", "typescript", "ai"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dittbrukernavn/snusfri-coach.git"
+    "url": "https://github.com/barx10/snusfri-coach.git"
   },
   "bugs": {
-    "url": "https://github.com/dittbrukernavn/snusfri-coach/issues"
+    "url": "https://github.com/barx10/snusfri-coach/issues"
   },
-  "homepage": "https://github.com/dittbrukernavn/snusfri-coach#readme",
+  "homepage": "https://github.com/barx10/snusfri-coach#readme",
   "private": false,
   "type": "module",
   "scripts": {
