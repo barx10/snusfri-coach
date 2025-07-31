@@ -22,6 +22,9 @@ dist-ssr
 # API Services with sensitive information
 services/geminiService.ts
 
+# Screenshots - keep the folder structure but ignore placeholder files
+# assets/screenshots/README.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
