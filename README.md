@@ -82,6 +82,14 @@ Hvis du deployer på Vercel anbefales det å kjøre AI-kall på serversiden (ser
 
 Når serverless funker er satt opp, vil frontend aldri eksponere din private nøkkel til brukerne.
 
+### Daglig variasjon og tone
+
+Serverless-endpointet `/api/generate-motivation` er nå designet for å gi flere korte varianter for hver felt (goalReminder, quoteOrFact, brutalMotivation) og returnerer ett element per felt basert på antall dager snusfri. Dette gjør at meldingen varierer fra dag til dag.
+
+Spesielt for `brutalMotivation` blir tonen HÅRD, NÅDELØS og LITT HÅNENDE slik du ba om. `goalReminder` holdes mer motiverende.
+
+Du kan justere hvor mange varianter modellen skal lage i `api/generate-motivation.ts` (vi ber om 5 varianter i standard). Varianten velges deterministisk med `daysFree % n` så samme dag gir samme variant, men det endres hver dag.
+
 ## 🏗️ Bygg for produksjon
 
 ```bash
