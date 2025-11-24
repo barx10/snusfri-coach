@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { getDailyMotivation } from '../services/geminiService';
+// Use the template service by default in the public repo so build succeeds.
+// If you want a custom service, copy `services/geminiService.template.ts` -> `services/geminiService.ts` locally.
+import { getDailyMotivation } from '../services/geminiService.template';
 import StatCard from './StatCard';
 import { MotivationData } from '../types';
 import { CalendarIcon, CashIcon, MotorcycleIcon, FireIcon } from './IconComponents';
