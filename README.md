@@ -92,6 +92,8 @@ Du kan justere hvor mange varianter modellen skal lage i `api/generate-motivatio
 
 Merk: Hvis Vercel ikke har `GEMINI_API_KEY` konfigurert, bruker endpointet en lokal fallback som fortsatt varierer daglig — men *brutalMotivation* i fallback er bevisst hard, nådeløs og litt hånende slik du ba om. Sett `GEMINI_API_KEY` i Vercel for ekte AI-genererte varianter.
 
+Når `GEMINI_API_KEY` er satt på Vercel bruker API-et nå Google GenAI SDK (`@google/genai`) direkte for å be Gemini om strukturerte JSON-varianter (modellen og parametre kan styres via miljøvariabler `GENAI_MODEL`, `GEMINI_API_URL` osv.).
+
 ## 🏗️ Bygg for produksjon
 
 ```bash
