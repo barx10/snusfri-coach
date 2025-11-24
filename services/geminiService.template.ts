@@ -8,11 +8,29 @@ import type { MotivationData } from '../types';
 
 export const getDailyMotivation = async (daysFree: number, moneySaved: number): Promise<MotivationData> => {
     try {
-        // TODO: Implement your AI service call here
-        // Example structure:
-        // - Use your preferred AI API (OpenAI, Anthropic, Google Gemini, etc.)
-        // - Pass daysFree and moneySaved as context
-        // - Return motivation data matching the MotivationData interface
+        // Recommended approach when deploying on Vercel (server-side):
+        // 1) Add your GEMINI_API_KEY in Vercel's Environment Variables (GEMINI_API_KEY)
+        // 2) Use the serverless endpoint /api/generate-motivation (server-side) to keep keys secret
+        // Example: call a Vercel serverless function that talks to Google Gemini / GenAI from the server.
+        // The repo provides an example serverless handler at /api/generate-motivation.
+
+        // Client-side: simply POST daysFree + moneySaved to the internal API endpoint.
+        try {
+            const res = await fetch('/api/generate-motivation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ daysFree, moneySaved })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                return data as MotivationData;
+            } else {
+                console.warn('Serverless generation returned non-OK:', await res.text());
+            }
+        } catch (err) {
+            console.error('Error calling serverless generation:', err);
+        }
         
         console.warn("API service not configured. Using fallback data.");
         

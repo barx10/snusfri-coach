@@ -72,6 +72,16 @@ Denne appen bruker AI for å generere personaliserte motivasjonsmeldinger. Du ka
 
 Se `services/geminiService.template.ts` for implementeringsguide.
 
+### Server-side anbefaling (Vercel)
+
+Hvis du deployer på Vercel anbefales det å kjøre AI-kall på serversiden (serverless functions) slik at API-nøkkelen ikke eksponeres i klienten.
+
+1. Legg `GEMINI_API_KEY` (din Gemini/GenAI-nøkkel) inn i Vercel → Project Settings → Environment Variables.
+2. Repoet inneholder et eksempel på en Vercel-funksjon: `/api/generate-motivation` som kaller AI-tjenesten fra serveren og returnerer et enkelt `MotivationData` JSON-objekt.
+3. Klienten i `services/geminiService.template.ts` er oppdatert for å gjøre et POST-kall mot `/api/generate-motivation` — du kan kopiere den til `services/geminiService.ts` for lokal tilpasning.
+
+Når serverless funker er satt opp, vil frontend aldri eksponere din private nøkkel til brukerne.
+
 ## 🏗️ Bygg for produksjon
 
 ```bash
