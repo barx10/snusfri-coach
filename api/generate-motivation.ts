@@ -2,6 +2,7 @@
 // This file runs on the server (Vercel functions). Keep your GEMINI_API_KEY in Vercel's Environment Variables.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { GoogleGenAI } from '@google/genai';
 
 type MotivationData = {
   goalReminder: string;
@@ -87,36 +88,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const GENAI_URL = process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1/models/text-bison-001:generate';
 
     try {
-      const r = await fetch(GENAI_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-          // The actual payload shape will depend on the API you call. This is an example.
-          prompt,
-          temperature: 0.8,
-          max_output_tokens: 256
-        })
+      // Use @google/genai SDK to call Gemini and request structured JSON output.
+      const ai = new GoogleGenAI({ apiKey: API_KEY });
+
+      const model = process.env.GENAI_MODEL || 'gemini-2.5-flash';
+      const response = await ai.models.generateContent({
+        model,
+        contents: prompt,
+        config: { temperature: 0.8, maxOutputTokens: 256 }
       });
 
-      if (!r.ok) {
-        console.error('AI provider returned non-OK status', r.status, await r.text());
-        // Fall back to safe data if provider fails
-        return res.json(SAFE_FALLBACK(days, money));
-      }
-
-      const json = await r.json();
-
-      // Try to extract a text output from a few common shapes.
-      let rawText = '';
-
-      if (typeof json?.candidates?.[0]?.output === 'string') rawText = json.candidates[0].output;
-      else if (typeof json?.candidates?.[0]?.content === 'string') rawText = json.candidates[0].content;
-      else if (typeof json?.output === 'string') rawText = json.output;
-      else if (typeof json?.choices?.[0]?.message?.content === 'string') rawText = json.choices[0].message.content;
-      else rawText = JSON.stringify(json);
+      // The SDK usually returns the model text in `response.text`.
+      const rawText = (response as any)?.text ?? JSON.stringify(response);
 
       // We expect rawText to be JSON (as instructed). Try to parse it.
       let parsed: any = null;
