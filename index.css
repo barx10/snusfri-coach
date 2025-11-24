@@ -1,0 +1,16 @@
+/* Minimal index.css to satisfy build-time presence.
+   Add any app-wide styles or Tailwind directives here if you use PostCSS/Tailwind locally.
+*/
+
+:root {
+  --app-bg: #0f172a;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--app-bg);
+}

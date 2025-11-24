@@ -13,10 +13,11 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        @import url('https://rsms.me/inter/inter.css');
+      /* @import must come first per PostCSS rules */
+      @import url('https://rsms.me/inter/inter.css');
+      body {
+        font-family: 'Inter', sans-serif;
+      }
     </style>
 <script type="importmap">
 {
