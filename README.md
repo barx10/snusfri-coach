@@ -90,6 +90,8 @@ Spesielt for `brutalMotivation` blir tonen HÅRD, NÅDELØS og LITT HÅNENDE sli
 
 Du kan justere hvor mange varianter modellen skal lage i `api/generate-motivation.ts` (vi ber om 5 varianter i standard). Varianten velges deterministisk med `daysFree % n` så samme dag gir samme variant, men det endres hver dag.
 
+Merk: Hvis Vercel ikke har `GEMINI_API_KEY` konfigurert, bruker endpointet en lokal fallback som fortsatt varierer daglig — men *brutalMotivation* i fallback er bevisst hard, nådeløs og litt hånende slik du ba om. Sett `GEMINI_API_KEY` i Vercel for ekte AI-genererte varianter.
+
 ## 🏗️ Bygg for produksjon
 
 ```bash
