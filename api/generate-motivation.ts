@@ -9,11 +9,43 @@ type MotivationData = {
   brutalMotivation: string;
 };
 
-const SAFE_FALLBACK = (daysFree: number, moneySaved: number): MotivationData => ({
-  goalReminder: `Du har vært snusfri i ${daysFree} dager. Fortsett — målet ditt nærmer seg!`,
-  quoteOrFact: `Hver dag uten snus bygger en ny vane. Du gjør en viktig jobb for helsen din.`,
-  brutalMotivation: `Du har spart ${moneySaved} kr. Tenk deg hva det kan bli om ett år!`
-});
+const SAFE_FALLBACK = (daysFree: number, moneySaved: number): MotivationData => {
+  // Local fallback variants so the app still feels dynamic even without an API key.
+  const dayIndex = (daysFree || 0);
+
+  const goalReminderVariants = [
+    `Du har vært snusfri i ${daysFree} dager. Fortsett — målet ditt nærmer seg!`,
+    `Dag ${daysFree}: hver dag er et skritt nærmere motorsykkelen. Stå på!`,
+    `Flott jobbet — ${daysFree} dager uten snus. Ikke stopp nå, du er nærmere enn du tror.`,
+    `Hold tempoet! ${daysFree} dager viser at du har disiplin. Motorsykkelen venter.`,
+    `Hver dag teller. ${daysFree} dager er bevis på at du kan klare dette.`
+  ];
+
+  const quoteOrFactVariants = [
+    `Hver dag uten snus bygger en ny vane. Du gjør en viktig jobb for helsen din.`,
+    `Visste du: kroppen starter å reparere seg kort tid etter at du slutter. Hold kursen.`,
+    `Enkle endringer hver dag fører til stor forandring over tid. Bra jobbet.`,
+    `Små seire hver dag blir til store gevinster. Ikke undervurder det.`,
+    `Disiplinen du bygger i dag, betaler seg i morgen.`
+  ];
+
+  // Brutal, hard, mocking variants (user requested harsh tone for 'spark i ræva')
+  const brutalVariants = [
+    `Dagens spark i ræva: Du er svekkelse i praksis — slutt å gi etter for snusbegjær!`,
+    `Skjerp deg. Dette er ikke et ønske; det er et valg. Gå ut av komfortsonen og gjør det nå.`,
+    `Så svakt.  ${daysFree} dager burde vært mye lengre — ikke la deg lure av gamle vaner.`,
+    `Null unnskyldninger. Du er bedre enn den lille stemmen som sier 'bare én til'. Bank den ned.`,
+    `Ikke forvent belønning for slapphet. Reis deg og vis hvem som bestemmer — du eller snusen?`
+  ];
+
+  const choose = (arr: string[]) => arr.length ? arr[dayIndex % arr.length] : '';
+
+  return {
+    goalReminder: choose(goalReminderVariants),
+    quoteOrFact: choose(quoteOrFactVariants),
+    brutalMotivation: choose(brutalVariants).replace('${moneySaved}', String(moneySaved))
+  };
+};
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed — use POST' });
