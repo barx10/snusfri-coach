@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 // Use the template service by default in the public repo so build succeeds.
 // If you want a custom service, copy `services/geminiService.template.ts` -> `services/geminiService.ts` locally.
-import { getDailyMotivation } from '../services/geminiService.template';
+import { getDailyMotivation } from '../services/geminiService';
 import StatCard from './StatCard';
 import { MotivationData, UserSettings } from '../types';
-import { CalendarIcon, CashIcon, MotorcycleIcon, FireIcon, CogIcon, RefreshIcon } from './IconComponents';
+import { CalendarIcon, CashIcon, MotorcycleIcon, FireIcon, CogIcon, RefreshIcon, SirenIcon } from './IconComponents';
 import HealthTimeline from './HealthTimeline';
 import Settings from './Settings';
+import PanicMode from './PanicMode';
 
 interface DashboardProps {
     settings: UserSettings;
@@ -23,6 +24,7 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [showSettings, setShowSettings] = useState<boolean>(false);
+    const [showPanic, setShowPanic] = useState<boolean>(false);
 
     const { daysFree, moneySaved, progressPercentage } = useMemo(() => {
         const now = Date.now();
@@ -71,8 +73,22 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
                 />
             )}
 
+            {showPanic && (
+                <PanicMode 
+                    daysFree={daysFree} 
+                    onClose={() => setShowPanic(false)} 
+                />
+            )}
+
             <header className="flex justify-between items-center mb-8">
-                <div className="w-8"></div> {/* Spacer for centering */}
+                <button
+                    onClick={() => setShowPanic(true)}
+                    className="p-2 text-red-500 hover:text-red-400 transition-colors hover:scale-110 duration-300"
+                    aria-label="Panic Mode"
+                    title="Kriseknapp!"
+                >
+                    <SirenIcon className="w-7 h-7 animate-pulse" />
+                </button>
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
                         <span className="text-gradient">Din daglige motivasjon</span>
@@ -169,6 +185,15 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
 
                 <HealthTimeline quitDate={settings.quitDate} />
             </main>
+
+            <div className="mt-12 animate-fade-in">
+                 <img
+                    src="https://images.pexels.com/photos/4616618/pexels-photo-4616618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    alt="En moderne, lys motorsykkel parkert på en gate i sollys"
+                    className="w-full h-48 object-cover rounded-xl shadow-lg border border-slate-700/50 opacity-80 hover:opacity-100 transition-opacity duration-500"
+                    aria-label="En moderne, lys motorsykkel parkert på en gate i sollys"
+                />
+            </div>
 
             <footer className="text-center mt-12 mb-8">
                 <button
