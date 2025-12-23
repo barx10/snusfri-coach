@@ -63,14 +63,14 @@ const App: React.FC = () => {
 
     if (!isInitialized) {
         return (
-            <div className="flex items-center justify-center min-h-screen bg-slate-900">
+            <div className="flex items-center justify-center min-h-screen">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-400"></div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col p-4 sm:p-6 lg:p-8">
+        <div className="min-h-screen text-slate-100 flex flex-col p-4 sm:p-6 lg:p-8">
             {settings ? (
                 <Dashboard 
                     settings={settings} 

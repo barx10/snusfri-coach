@@ -74,12 +74,14 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
             <header className="flex justify-between items-center mb-8">
                 <div className="w-8"></div> {/* Spacer for centering */}
                 <div className="text-center">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-100">Din daglige motivasjon</h1>
-                    <p className="text-slate-400 mt-1">Dag {daysFree}</p>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
+                        <span className="text-gradient">Din daglige motivasjon</span>
+                    </h1>
+                    <p className="text-slate-400 mt-1 font-medium">Dag {daysFree}</p>
                 </div>
                 <button 
                     onClick={() => setShowSettings(true)}
-                    className="p-2 text-slate-400 hover:text-slate-100 transition-colors"
+                    className="p-2 text-slate-400 hover:text-slate-100 transition-colors hover:rotate-90 duration-300"
                     aria-label="Innstillinger"
                 >
                     <CogIcon className="w-6 h-6" />
@@ -101,33 +103,33 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
                 </div>
 
                 {/* Savings Goal Progress */}
-                <div className="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50">
+                <div className="glass-panel rounded-xl p-6">
                     <div className="flex justify-between items-end mb-2">
                         <div>
-                            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider">Sparemål</h3>
+                            <h3 className="text-slate-400 text-xs font-bold uppercase tracking-widest">Sparemål</h3>
                             <p className="text-xl font-bold text-slate-100">{settings.savingsGoal}</p>
                         </div>
                         <div className="text-right">
-                            <p className="text-slate-400 text-sm">{progressPercentage.toFixed(1)}%</p>
+                            <p className="text-slate-400 text-sm font-mono">{progressPercentage.toFixed(1)}%</p>
                         </div>
                     </div>
-                    <div className="w-full bg-slate-700 rounded-full h-4 overflow-hidden">
+                    <div className="w-full bg-slate-900/50 rounded-full h-4 overflow-hidden border border-slate-700/30">
                         <div 
-                            className="bg-gradient-to-r from-amber-500 to-orange-500 h-4 rounded-full transition-all duration-1000 ease-out"
+                            className="bg-gradient-to-r from-amber-500 to-orange-600 h-4 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(245,158,11,0.5)]"
                             style={{ width: `${progressPercentage}%` }}
                         ></div>
                     </div>
-                    <div className="flex justify-between mt-2 text-xs text-slate-500">
+                    <div className="flex justify-between mt-2 text-xs text-slate-500 font-mono">
                         <span>0 kr</span>
                         <span>{formatCurrency(settings.savingsGoalCost)}</span>
                     </div>
                 </div>
 
-                <div className="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50 relative">
+                <div className="glass-panel rounded-xl p-6 relative">
                     <button 
                         onClick={fetchMotivation}
                         disabled={isLoading}
-                        className="absolute top-4 right-4 p-2 text-slate-400 hover:text-amber-400 transition-colors disabled:opacity-50"
+                        className="absolute top-4 right-4 p-2 text-slate-400 hover:text-amber-400 transition-colors disabled:opacity-50 hover:bg-slate-800/50 rounded-full"
                         aria-label="Hent ny motivasjon"
                     >
                         <RefreshIcon className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
@@ -142,23 +144,23 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
                     ) : motivation && (
                         <div className="space-y-6 animate-fade-in">
                              <div className="flex items-start space-x-4">
-                                <div className="flex-shrink-0 mt-1">
+                                <div className="flex-shrink-0 mt-1 p-2 bg-orange-500/10 rounded-lg">
                                     <FireIcon className="w-7 h-7 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg text-slate-200">Dagens spark i ræva</h3>
-                                    <p className="text-slate-300 font-medium">{motivation.brutalMotivation}</p>
-                                    <p className="text-slate-400 text-sm italic mt-2">"{motivation.quoteOrFact}"</p>
+                                    <h3 className="font-bold text-lg text-slate-200">Dagens spark i ræva</h3>
+                                    <p className="text-slate-300 font-medium leading-relaxed">{motivation.brutalMotivation}</p>
+                                    <p className="text-slate-400 text-sm italic mt-3 border-l-2 border-slate-700 pl-3">"{motivation.quoteOrFact}"</p>
                                 </div>
                             </div>
-                            <div className="border-t border-slate-700"></div>
+                            <div className="border-t border-slate-700/50"></div>
                             <div className="flex items-start space-x-4">
-                                <div className="flex-shrink-0 mt-1">
+                                <div className="flex-shrink-0 mt-1 p-2 bg-amber-500/10 rounded-lg">
                                     <MotorcycleIcon className="w-7 h-7 text-amber-400" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg text-slate-200">Målet ditt: {settings.savingsGoal}</h3>
-                                    <p className="text-slate-300">{motivation.goalReminder}</p>
+                                    <h3 className="font-bold text-lg text-slate-200">Målet ditt: {settings.savingsGoal}</h3>
+                                    <p className="text-slate-300 leading-relaxed">{motivation.goalReminder}</p>
                                 </div>
                             </div>
                         </div>

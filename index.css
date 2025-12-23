@@ -1,16 +1,26 @@
-/* Minimal index.css to satisfy build-time presence.
-   Add any app-wide styles or Tailwind directives here if you use PostCSS/Tailwind locally.
-*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --app-bg: #0f172a;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
 body {
   margin: 0;
   background-color: var(--app-bg);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+}
+
+.glass-panel {
+  @apply bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-amber-500;
 }

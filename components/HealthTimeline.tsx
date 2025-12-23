@@ -19,19 +19,21 @@ const HealthTimeline: React.FC<HealthTimelineProps> = ({ quitDate }) => {
     const hoursSinceQuit = (Date.now() - quitDate) / (1000 * 60 * 60);
 
     return (
-        <div className="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50 mt-6">
-            <h3 className="text-xl font-bold text-slate-100 mb-6">Helsegevinst</h3>
-            <div className="space-y-8 relative pl-8 border-l-2 border-slate-700 ml-4">
+        <div className="glass-panel rounded-xl p-6 mt-6">
+            <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center">
+                <span className="mr-2">🏥</span> Helsegevinst
+            </h3>
+            <div className="space-y-8 relative pl-8 border-l-2 border-slate-700/50 ml-4">
                 {MILESTONES.map((milestone) => {
                     const isAchieved = hoursSinceQuit >= milestone.hoursRequired;
                     return (
-                        <div key={milestone.id} className={`relative ${isAchieved ? 'opacity-100' : 'opacity-40'}`}>
-                            <div className={`absolute -left-[43px] top-0 flex items-center justify-center w-8 h-8 rounded-full border-4 border-slate-900 ${isAchieved ? 'bg-emerald-500 text-white shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-slate-700 text-slate-400'}`}>
+                        <div key={milestone.id} className={`relative transition-all duration-500 ${isAchieved ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-2'}`}>
+                            <div className={`absolute -left-[43px] top-0 flex items-center justify-center w-8 h-8 rounded-full border-4 border-slate-900 transition-all duration-500 ${isAchieved ? 'bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.6)] scale-110' : 'bg-slate-800 text-slate-500'}`}>
                                 <span className="text-xs">{milestone.icon}</span>
                             </div>
-                            <div>
+                            <div className={`${isAchieved ? 'bg-slate-800/40 p-3 rounded-lg -ml-3 -mt-3 backdrop-blur-sm' : ''}`}>
                                 <h4 className={`font-bold text-lg ${isAchieved ? 'text-emerald-400' : 'text-slate-300'}`}>{milestone.title}</h4>
-                                <p className="text-slate-400 text-sm mt-1">{milestone.description}</p>
+                                <p className="text-slate-400 text-sm mt-1 leading-relaxed">{milestone.description}</p>
                             </div>
                         </div>
                     );
