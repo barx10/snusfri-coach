@@ -22,7 +22,7 @@ const PanicMode: React.FC<PanicModeProps> = ({ daysFree, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-red-950/90 z-50 flex items-center justify-center p-4 backdrop-blur-md animate-fade-in">
-            <div className="max-w-lg w-full bg-slate-900 border-2 border-red-500/50 rounded-2xl p-8 shadow-[0_0_50px_rgba(220,38,38,0.5)] relative overflow-hidden">
+            <div className="max-w-lg w-full bg-slate-900 border-2 border-red-500/50 rounded-2xl p-8 shadow-[0_0_50px_rgba(220,38,38,0.5)] relative max-h-[90vh] overflow-y-auto">
                 
                 {/* Close button */}
                 <button 

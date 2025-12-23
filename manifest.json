@@ -4,13 +4,13 @@
   "description": "En motiverende app som hjelper deg med å slutte å snuse, spore fremgangen din og nå målet ditt om en ny motorsykkel.",
   "icons": [
     {
-      "src": "/assets/icon.svg",
+      "src": "assets/icon.svg",
       "type": "image/svg+xml",
       "sizes": "192x192 512x512",
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#0f172a",
   "background_color": "#0f172a"
