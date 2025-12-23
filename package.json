@@ -4,7 +4,14 @@
   "description": "En motiverende app som hjelper deg å holde deg snusfri med fokus på motorsykkelmål",
   "author": "Kenneth Bareksten",
   "license": "MIT",
-  "keywords": ["snus", "quit-smoking", "motivation", "react", "typescript", "ai"],
+  "keywords": [
+    "snus",
+    "quit-smoking",
+    "motivation",
+    "react",
+    "typescript",
+    "ai"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/barx10/snusfri-coach.git"
@@ -21,12 +28,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.1.1",
     "@google/genai": "^1.12.0",
+    "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@vercel/node": "^5.5.16",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
