@@ -20,7 +20,7 @@ dist-ssr
 .env.production.local
 
 # API Services with sensitive information
-services/geminiService.ts
+# services/geminiService.ts
 
 # Screenshots - keep the folder structure but ignore placeholder files
 # assets/screenshots/README.md
