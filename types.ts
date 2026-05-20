@@ -10,6 +10,7 @@ export interface UserSettings {
     savingsGoal: string;
     savingsGoalCost: number;
     currency: string;
+    geminiApiKey: string;
 }
 
 export interface HealthMilestone {

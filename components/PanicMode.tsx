@@ -4,10 +4,11 @@ import { FireIcon } from './IconComponents';
 
 interface PanicModeProps {
     daysFree: number;
+    apiKey: string;
     onClose: () => void;
 }
 
-const PanicMode: React.FC<PanicModeProps> = ({ daysFree, onClose }) => {
+const PanicMode: React.FC<PanicModeProps> = ({ daysFree, apiKey, onClose }) => {
     const [roast, setRoast] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [mode, setMode] = useState<'menu' | 'roast' | 'zen'>('menu');
@@ -15,7 +16,7 @@ const PanicMode: React.FC<PanicModeProps> = ({ daysFree, onClose }) => {
     const handleGetRoast = async () => {
         setMode('roast');
         setIsLoading(true);
-        const result = await getPanicRoast(daysFree);
+        const result = await getPanicRoast(daysFree, apiKey);
         setRoast(result);
         setIsLoading(false);
     };

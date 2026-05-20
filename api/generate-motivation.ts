@@ -53,15 +53,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { daysFree, moneySaved } = req.body ?? {};
+    const { daysFree, moneySaved, savingsGoal, apiKey } = req.body ?? {};
     const days = Number(daysFree || 0);
     const money = Number(moneySaved || 0);
+    const goal = typeof savingsGoal === 'string' && savingsGoal ? savingsGoal : 'motorsykkelen';
 
     if (Number.isNaN(days) || Number.isNaN(money)) {
       return res.status(400).json({ error: 'Invalid request — daysFree and moneySaved must be numbers' });
     }
 
-    const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY;
+    const API_KEY = (typeof apiKey === 'string' && apiKey) || process.env.GEMINI_API_KEY || process.env.API_KEY;
 
     if (!API_KEY) {
       // No API key configured — return a safety fallback so the frontend still works
@@ -81,7 +82,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `goalReminder skal være motiverende og oppmuntrende. ` +
       `quoteOrFact kan være en kort fakta eller sitat som inspirerer. ` +
       `Svar kun med gyldig JSON uten ekstra tekst.` +
-      ` Kontekst: personen har vært snusfri i ${days} dager og har spart ${money} kr.`;
+      ` Kontekst: personen har vært snusfri i ${days} dager og har spart ${money} kr mot målet: ${goal}.`;
 
     // NOTE: The URL and JSON schema below is a placeholder. Replace with the correct GenAI endpoint or SDK
     // Example REST request for a Google Gen AI endpoint might look different — use the official SDK or REST API.
