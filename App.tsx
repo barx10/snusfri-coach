@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Onboarding from './components/Onboarding';
 import Dashboard from './components/Dashboard';
+import PinGate from './components/PinGate';
 import { UserSettings } from './types';
 
 const QUIT_DATE_KEY = 'snusfri_quit_date_v1'; // Old key
@@ -18,6 +19,9 @@ const DEFAULT_SETTINGS: UserSettings = {
 const App: React.FC = () => {
     const [settings, setSettings] = useState<UserSettings | null>(null);
     const [isInitialized, setIsInitialized] = useState<boolean>(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+        localStorage.getItem('snusfri_auth') === 'true'
+    );
 
     useEffect(() => {
         try {
@@ -60,6 +64,10 @@ const App: React.FC = () => {
             setSettings(null);
         }
     };
+
+    if (!isAuthenticated) {
+        return <PinGate onAuthenticated={() => setIsAuthenticated(true)} />;
+    }
 
     if (!isInitialized) {
         return (
