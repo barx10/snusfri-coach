@@ -31,7 +31,7 @@ Ikke hold igjen. Bruk mørk humor, vær personlig (du vet kun at jeg har klart $
 Svaret skal være ren tekst, ingen JSON. Maks 3 setninger.
 Random seed: ${randomSeed}`;
 
-        const model = process.env.GENAI_MODEL || 'gemini-2.5-flash';
+        const model = process.env.GENAI_MODEL || 'gemini-3.1-flash-lite';
         const response = await ai.models.generateContent({
             model,
             contents: prompt,
