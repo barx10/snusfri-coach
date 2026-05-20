@@ -92,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // Use @google/genai SDK to call Gemini and request structured JSON output.
       const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-      const model = process.env.GENAI_MODEL || 'gemini-2.5-flash';
+      const model = process.env.GENAI_MODEL || 'gemini-3.1-flash-lite';
       const response = await ai.models.generateContent({
         model,
         contents: prompt,
