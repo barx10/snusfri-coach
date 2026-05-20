@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Onboarding from './components/Onboarding';
 import Dashboard from './components/Dashboard';
-import PinGate from './components/PinGate';
 import { UserSettings } from './types';
 
 const QUIT_DATE_KEY = 'snusfri_quit_date_v1'; // Old key
@@ -13,15 +12,13 @@ const DEFAULT_SETTINGS: UserSettings = {
     dailyCost: 110,
     savingsGoal: 'Motorsykkel',
     savingsGoalCost: 150000,
-    currency: 'NOK'
+    currency: 'NOK',
+    geminiApiKey: '',
 };
 
 const App: React.FC = () => {
     const [settings, setSettings] = useState<UserSettings | null>(null);
     const [isInitialized, setIsInitialized] = useState<boolean>(false);
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-        localStorage.getItem('snusfri_auth') === 'true'
-    );
 
     useEffect(() => {
         try {
@@ -65,10 +62,6 @@ const App: React.FC = () => {
         }
     };
 
-    if (!isAuthenticated) {
-        return <PinGate onAuthenticated={() => setIsAuthenticated(true)} />;
-    }
-
     if (!isInitialized) {
         return (
             <div className="flex items-center justify-center min-h-screen">
@@ -80,10 +73,10 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen text-slate-100 flex flex-col p-4 sm:p-6 lg:p-8">
             {settings ? (
-                <Dashboard 
-                    settings={settings} 
+                <Dashboard
+                    settings={settings}
                     onUpdateSettings={handleUpdateSettings}
-                    onReset={handleReset} 
+                    onReset={handleReset}
                 />
             ) : (
                 <Onboarding onStart={handleStart} />

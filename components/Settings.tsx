@@ -95,6 +95,32 @@ const Settings: React.FC<SettingsProps> = ({ settings, onSave, onCancel }) => {
                         />
                     </div>
 
+                    <div>
+                        <label className="block text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">
+                            Gemini API-nøkkel
+                        </label>
+                        <input
+                            type="password"
+                            name="geminiApiKey"
+                            value={formData.geminiApiKey ?? ''}
+                            onChange={handleChange}
+                            placeholder="AIza..."
+                            autoComplete="off"
+                            className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all font-mono text-sm"
+                        />
+                        <p className="text-slate-500 text-xs mt-1">
+                            Hent gratis nøkkel på{' '}
+                            <a
+                                href="https://aistudio.google.com/apikey"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-amber-500 hover:text-amber-400 underline"
+                            >
+                                aistudio.google.com
+                            </a>
+                        </p>
+                    </div>
+
                     <div className="flex space-x-3 pt-6">
                         <button
                             type="button"

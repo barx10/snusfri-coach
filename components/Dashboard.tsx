@@ -39,7 +39,7 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
         setIsLoading(true);
         setError(null);
         try {
-            const data = await getDailyMotivation(daysFree, moneySaved, settings.savingsGoal);
+            const data = await getDailyMotivation(daysFree, moneySaved, settings.savingsGoal, settings.geminiApiKey);
             setMotivation(data);
         } catch (err) {
             setError("Kunne ikke hente dagens motivasjon, men du klarer dette! Prøv å laste siden på nytt.");
@@ -74,9 +74,10 @@ const Dashboard: React.FC<DashboardProps> = ({ settings, onUpdateSettings, onRes
             )}
 
             {showPanic && (
-                <PanicMode 
-                    daysFree={daysFree} 
-                    onClose={() => setShowPanic(false)} 
+                <PanicMode
+                    daysFree={daysFree}
+                    apiKey={settings.geminiApiKey}
+                    onClose={() => setShowPanic(false)}
                 />
             )}
 
